@@ -1,0 +1,332 @@
+/* ==========================
+   全局样式
+========================== */
+body {
+  background: #f0f0f0;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.timer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 540px;
+  padding: 30px;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================
+   左上角退出 & 右上角静音
+========================== */
+.timer__top-left,
+.timer__top-right {
+  position: absolute;
+  top: 15px;
+  display: flex;
+  z-index: 10;
+}
+
+.timer__top-left { left: 15px; }
+.timer__top-right { right: 15px; }
+
+.timer__btn--exit,
+.timer__btn--mute {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px !important;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.15s, box-shadow 0.2s;
+}
+
+.timer__btn--exit { background-color: #ff4d4f; color: white; }
+.timer__btn--mute { background-color: #ab20e7; color: white; }
+
+.timer__btn--exit:hover { background-color: #e5533d; }
+.timer__btn--mute:hover { background-color: #971bcc; }
+
+/* ==========================
+   时间显示
+========================== */
+.timer__display {
+  font-size: 75px;
+  font-weight: bold;
+  margin-bottom: 21px;
+  display: flex;
+  gap: 18px;
+  font-family: "Courier New", monospace;
+  color: #333;
+}
+
+.timer__part { font-weight: bold; }
+.timer__separator { font-weight: bold; }
+
+.timer__display--warn {
+  animation: flashWarnFade 1s infinite;
+  transition: color 0.3s;
+}
+
+@keyframes flashWarnFade {
+  0%,100% { color: #333; opacity: 1; }
+  50% { color: #ff0000; opacity: 0.5; }
+}
+
+/* ==========================
+   输入框
+========================== */
+.timer__inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.timer__input--minutes,
+.timer__input--seconds {
+  width: 83px;
+  padding: 9px 12px;
+  font-size: 24px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  text-align: center;
+  outline: none;
+  transition: border 0.25s, box-shadow 0.25s;
+}
+
+.timer__input--minutes:focus,
+.timer__input--seconds:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 7.5px rgba(76, 175, 80, 0.4);
+}
+
+.timer__input-label { font-size: 21px; color: #666; }
+
+/* ==========================
+   番茄按钮
+========================== */
+.timer__btn--pomodoro {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background-color: #FF6347;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+
+.timer__btn--pomodoro:hover { background-color: #e5533d; }
+
+.tomato-icon {
+  width: 72%;
+  height: 72%;
+  max-width: 42px;
+  max-height: 42px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.timer__btn--pomodoro-active {
+  animation: glowPulse 2s infinite ease-in-out;
+  color: white;
+}
+
+@keyframes glowPulse {
+  0%,100% { box-shadow: 0 0 9px 3px rgba(255,140,0,0.5); }
+  50% { box-shadow: 0 0 15px 4.5px rgba(255,140,0,0.8); }
+}
+
+/* ==========================
+   控制按钮
+========================== */
+.timer__controls {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.timer__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 30px;
+  color: white;
+  transition: background 0.25s, transform 0.15s, box-shadow 0.2s;
+}
+
+.timer__btn:hover { transform: scale(1.1); box-shadow: 0 4.5px 12px rgba(0,0,0,0.2); }
+.timer__btn:active { transform: scale(0.95); box-shadow: 0 3px 7.5px rgba(0,0,0,0.2) inset; }
+
+.timer__btn--start { background: #4caf50; }
+.timer__btn--stop  { background: #f44336; }
+.timer__btn--reset { background: #ff9800; }
+.timer__btn--reset:hover { background: #fb8c00; }
+
+/* ==========================
+   左下角说明按钮
+========================== */
+.timer__bottom-left {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+}
+
+.timer__btn--info {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  background-color: #2196f3;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer__btn--info:hover { background-color: #1976d2; }
+
+/* ==========================
+   弹窗样式
+========================== */
+.timer__settings-overlay,
+.timer__info-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+.hidden { display: none; }
+
+.timer__settings,
+.timer__info-overlay .timer__settings {
+  background-color: white;
+  padding: 16px 24px;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  width: 400px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  position: relative; 
+  box-sizing: border-box;
+}
+
+.timer__settings h3 { 
+  margin: 0; 
+  font-size: 22px; 
+}
+
+.timer__settings label {
+  display: flex; 
+  justify-content: space-between;  
+  align-items: center;
+  width: 80%;                       
+  font-size: 16px;
+}
+
+.timer__settings input {
+  width: 60px; 
+  padding: 4px; 
+  border-radius: 6px; 
+  border: 1.5px solid #ccc; 
+  text-align: center;
+}
+
+.settings__buttons { 
+  display: flex; 
+  justify-content: space-between; 
+  width: 80%; 
+  gap: 8px;
+}
+
+.settings__buttons button {
+  flex: 1; 
+  padding: 6px 0; 
+  border: none; 
+  border-radius: 12px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  transition: background-color 0.2s;
+}
+
+.settings__save { background-color:#4caf50; color:white; }
+.settings__save:hover { background-color:#388e3c; }
+.settings__cancel { background-color:#f44336; color:white; }
+.settings__cancel:hover { background-color:#d32f2f; }
+
+/* 小圆形关闭按钮 */
+.timer__settings .timer__info-close,
+.timer__info-overlay .timer__info-close {
+  position: absolute;
+  top: 10px;
+  right: 10px; 
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background-color: #fe1302;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  line-height: 0;
+  padding: 0;
+}
+
+.timer__settings .timer__info-close:hover,
+.timer__info-overlay .timer__info-close:hover {
+  background-color: #d32f2f;
+}
+
+
+
+
+/* ==========================
+   响应式
+========================== */
+@media (max-width:480px){
+  .timer { width: 90%; padding: 20px; }
+  .timer__display { font-size: 63px; gap: 12px; }
+  .timer__inputs { gap: 9px; flex-wrap:wrap; justify-content:center; }
+  .timer__input--minutes, .timer__input--seconds { width:75px; font-size:21px; }
+  .timer__controls { gap:15px; }
+  .timer__btn { width:57px; height:57px; font-size:27px; }
+  .timer__btn--pomodoro { width:57px; height:57px; }
+  .timer__btn--exit, .timer__btn--mute { width:24px; height:24px; font-size:15px; }
+  .timer__btn--exit span,
+  .timer__btn--mute span { font-size:15px; }
+  .timer__btn--info { width:28px; height:28px; font-size:16px; }
+}
+
+/* 移动端 hover 优化 */
+@media (hover:none){ .timer__btn:hover{ transform:none; box-shadow:none; } }
